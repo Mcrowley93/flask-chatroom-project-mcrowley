@@ -1,0 +1,19 @@
+.custom-button {
+    border-radius: 15px;
+    width: 150px;
+    margin: auto;
+}
+
+.chat-input,
+.chat-output {
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.chat-input {
+    margin-left: 10px;
+}
+
+.chat-output {
+    margin-right: 10px;
+}
