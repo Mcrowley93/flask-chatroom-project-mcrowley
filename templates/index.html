@@ -1,13 +1,12 @@
-<html>
-    <head>
-        <title>Home Page</title>
-    </head>
-
-    <body>
+{% extends 'base.html' %}
+{% block content %}
+    <div>
+        <br>
         <form method="POST">
-            <label for="username">Username:</label>
+            <label for="username">Please enter your <em>username</em>:</label>
             <input type="text" id="username" name="username">
-            <button>Go to chat!</button>
+            <br>
+            <button class="custom-button btn-primary">Go to chat!</button>
         </form>
-    </body>
-</html>
+    </div>
+{% endblock %}
