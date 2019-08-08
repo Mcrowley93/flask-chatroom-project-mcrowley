@@ -1,24 +1,38 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Chat page for {{ username }}</title>
-</head>
-<body>
-    <h1>Welcome {{ username }}</h1>
+{% extends 'base.html' %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-5">
+            <div class="chat-input">
+                <h1>Hello <strong>{{ username }}</strong>,<br>welcome to the chat!</h1>
 
-    <form method="POST">
-        <textarea cols="50" rows="4" name="message" id="message" placeholder="Input chat text here..."></textarea>
-        <br>
-        <button>Send message</button>
-    </form>
+                <form method="POST">
+                    <textarea cols="50" rows="4" name="message" id="message" placeholder="Input chat text here..."></textarea>
+                    <br>
+                    <button class="offset-2 custom-button btn-primary">Send message</button>
+                </form>
+                <br>
+                <h2>Keep it short and sweet!<br>Clear your chat history...?</h2>
+                <form action="{{ url_for('clear') }}" class="offset-2" method='POST'>
+                    <button class="custom-button btn-primary">Clear Chat!</button>
+                </form>
+                <br>
+                <h3><strong>{{ username }}</strong>...not you?<br>Log out here...</h3>
+                <form action="{{ url_for('logout') }}" class="offset-2" method='POST'>
+                    <button class="custom-button btn-primary">Log out!</button>
+                </form>
+                <br>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="chat-output">
+                <h2>Your chat history...</h2>
 
-    {% for message in chat_messages %}
-        <p>({{ message.timestamp }}) {{ message.from }}: {{ message.message }}</p>
-    {% endfor %}
-
+                {% for message in chat_messages %}
+                    <p>({{ message.timestamp }}) {{ message.from }}: {{ message.message }}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
     <script>
         let textbox = document.getElementById("message")
 
@@ -35,6 +49,6 @@
             }, 5000)
 
         }
+
     </script>
-</body>
-</html>
+{% endblock %}
