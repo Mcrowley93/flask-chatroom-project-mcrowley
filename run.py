@@ -39,4 +39,16 @@ def user(username):
     return render_template("chat.html", username=username, chat_messages=messages)
 
 
+@app.route('/clear', methods=['POST'])
+def clear():
+    del messages[:]
+    return redirect(url_for("user", username=session["username"]))
+
+
+@app.route('/logout', methods=['POST'])
+def logout():
+    session.pop('username', None)
+    return redirect(url_for('index'))
+
+
 app.run(host=os.getenv('IP', '127.0.0.1'), port=int(os.getenv('PORT', '8080')), debug=False)
